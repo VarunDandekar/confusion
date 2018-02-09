@@ -1,14 +1,14 @@
 <div class="container" fxLayout="row" fxLayoutGap="10px">
-  <div fxFlex *ngIf="selectedDish">
+  <div fxFlex *ngIf="dish">
     <mat-card>
       <mat-card-header>
         <mat-card-title>
-          <h3>{{selectedDish.name | uppercase}}</h3>
+          <h3>{{dish.name | uppercase}}</h3>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src={{selectedDish.image}} alt={{selectedDish.name}}>
+      <img mat-card-image src={{dish.image}} alt={{dish.name}}>
       <mat-card-content>
-        <p>{{selectedDish.description}}
+        <p>{{dish.description}}
         </p>
       </mat-card-content>
       <mat-card-actions>
@@ -18,7 +18,7 @@
     </mat-card>
   </div>
 
-  <div fxFlex *ngIf="selectedDish">
+  <div fxFlex *ngIf="dish">
       <div class="container" fxLayout="column" fxLayoutGap="10px">
     <div fxFlex>
       <div>
@@ -27,8 +27,8 @@
       </div>
     </div>
     <mat-list fxFlex>
-      <mat-list-item *ngFor="let comment of comments">
-        <h1 mat-line> {{comment.name}} </h1>
+      <mat-list-item *ngFor="let comment of dish.comments">
+        <h1 mat-line> {{comment.comment}} </h1>
         <p mat-line>
           <span> {{comment.rating}} </span>
         </p>
