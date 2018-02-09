@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Dish } from '../shared/dish';
-
+import{Dish} from '../shared/dish';
+import{Comments} from '../shared/comments';
+import { Comment } from '@angular/compiler';
 const DISHES: Dish[] = [
   {
     name: 'Uthappizza',
@@ -36,15 +36,16 @@ const DISHES: Dish[] = [
     description: 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms'
   }
 ];
-
+const comments:Comments[] =[{name:'good',rating:'4',author:'varun',date:new Date('2016-01-21T12:56:16.498Z')}];
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  selector: 'app-dish-details',
+  templateUrl: './dish-details.component.html',
+  styleUrls: ['./dish-details.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class DishDetailsComponent implements OnInit {
 
-  dishes: Dish[] = DISHES;
+  selectedDish:Dish=DISHES[0];
+  comments:Comments[]=comments;
   constructor() { }
 
   ngOnInit() {
