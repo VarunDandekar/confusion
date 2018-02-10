@@ -1,5 +1,5 @@
-import { Component, OnInit ,Input} from '@angular/core';
-import{Dish} from '../shared/dish';
+import { Component, OnInit, Input } from '@angular/core';
+import { Dish } from '../shared/dish';
 
 
 
@@ -10,7 +10,7 @@ import{Dish} from '../shared/dish';
 })
 export class DishDetailsComponent implements OnInit {
   @Input()
-  dish:Dish;
+  dish: Dish;
   constructor() { }
 
   ngOnInit() {
