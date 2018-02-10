@@ -7,7 +7,7 @@ export class DishService {
 
   constructor() { }
 
-  getDishes() :Dish {
+  getDishes() :Dish[] {
     return DISHES;
   }
 
