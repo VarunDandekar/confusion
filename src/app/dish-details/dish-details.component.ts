@@ -17,11 +17,11 @@ export class DishDetailsComponent implements OnInit {
 
   ngOnInit() {
     let id = + this.route.snapshot.params['id']
-  this.dishService.getDish(id).then(dish => this.dish=dish);
+  this.dishService.getDish(id).subscribe(dish => this.dish=dish);
   }
 
   goBack() :void {
-    this.location.back();
+    this.location.back(); 
   }
 
 
