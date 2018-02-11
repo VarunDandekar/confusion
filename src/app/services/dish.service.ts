@@ -1,31 +1,44 @@
 import { Injectable } from '@angular/core';
 
 import { Dish } from '../shared/dish';
-import { DISHES } from '../shared/dishes';
+import { Http, Response } from '@angular/http';
+import { baseURL } from '../shared/baseurl';
+import{ProcessHttpmsgService} from './process-httpmsg.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
 
 @Injectable()
 export class DishService {
 
-  constructor() { }
+  constructor( private http:Http,
+  private processHttpmsgService:ProcessHttpmsgService ) { }
 
-  getDishes(): Promise<Dish[]> {
-    return Observable.of(DISHES).delay(2000).toPromise();
+  getDishes(): Observable<Dish[]> {
+   return this.http.get(baseURL+'dishes')
+    .map(res => { return this.processHttpmsgService.extractData(res)});
+    //return Observable.of(DISHES).delay(2000).toPromise();
   }
 
   getDish(id: number): Observable<Dish> {
-    return Observable.of(DISHES.filter((dish) => (dish.id === id))[0]).delay(2000);
+   // return Observable.of(DISHES.filter((dish) => (dish.id === id))[0]).delay(2000);
+   return this.http.get(baseURL+'dishes/' + id)
+   .map(res => { return this.processHttpmsgService.extractData(res)});
   }
 
-  getFeaturedDish(): Promise<Dish> {
-    return Promise.resolve(DISHES.filter((dish) => (dish.featured))[0]);
+  getFeaturedDish(): Observable<Dish> {
+   // return Promise.resolve(DISHES.filter((dish) => (dish.featured))[0]);
+   return this.http.get(baseURL+'dishes?featured=true')
+   .map(res => { return this.processHttpmsgService.extractData(res)[0]});
   }
 
-  getDishIds() : Observable<number[]>{
-    return Observable.of(DISHES.map(dish => dish.id)).delay(2000);
+  getDishIds(): Observable<number[]> {
+    //return Observable.of(DISHES.map(dish => dish.id)).delay(2000);
+    return this.getDishes().map(dishes => {return dishes.map(dish => dish.id)})
   }
 
 }
