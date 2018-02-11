@@ -20,25 +20,29 @@ export class DishService {
 
   getDishes(): Observable<Dish[]> {
    return this.http.get(baseURL+'dishes')
-    .map(res => { return this.processHttpmsgService.extractData(res)});
+    .map(res => { return this.processHttpmsgService.extractData(res)})
+    .catch(error => { return this.processHttpmsgService.handleError(error); });
     //return Observable.of(DISHES).delay(2000).toPromise();
   }
 
   getDish(id: number): Observable<Dish> {
    // return Observable.of(DISHES.filter((dish) => (dish.id === id))[0]).delay(2000);
    return this.http.get(baseURL+'dishes/' + id)
-   .map(res => { return this.processHttpmsgService.extractData(res)});
+   .map(res => { return this.processHttpmsgService.extractData(res)})
+   .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
   getFeaturedDish(): Observable<Dish> {
    // return Promise.resolve(DISHES.filter((dish) => (dish.featured))[0]);
    return this.http.get(baseURL+'dishes?featured=true')
-   .map(res => { return this.processHttpmsgService.extractData(res)[0]});
+   .map(res => { return this.processHttpmsgService.extractData(res)[0]})
+   .catch(error => { return this.processHttpmsgService.handleError(error); });
   }
 
   getDishIds(): Observable<number[]> {
     //return Observable.of(DISHES.map(dish => dish.id)).delay(2000);
-    return this.getDishes().map(dishes => {return dishes.map(dish => dish.id)})
+    return this.getDishes().map(dishes => {return dishes.map(dish => dish.id)});
+
   }
 
 }

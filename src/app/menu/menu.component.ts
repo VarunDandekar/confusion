@@ -12,11 +12,15 @@ import { inject } from '@angular/core/testing';
 export class MenuComponent implements OnInit {
 
   dishes: Dish[];
+  errMess:String;
  // selectedDish: Dish;
   constructor(private dishService: DishService, @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
- this.dishService.getDishes().subscribe(dishes => this.dishes = dishes);
+ 
+    this.dishService.getDishes()
+    .subscribe(dishes => this.dishes = dishes,
+      errmess => this.errMess = <any>errmess);
   }
 /*   onSelect(dish: Dish) {
     this.selectedDish = dish;
