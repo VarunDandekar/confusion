@@ -27,6 +27,7 @@ import { baseURL } from './shared/baseurl';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import{ProcessHttpmsgService} from './services/process-httpmsg.service';
+import { HightlightDirective } from './directives/hightlight.directive';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import{ProcessHttpmsgService} from './services/process-httpmsg.service';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HightlightDirective
   ],
   imports: [
     BrowserModule,
