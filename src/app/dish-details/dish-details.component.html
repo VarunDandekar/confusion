@@ -1,5 +1,5 @@
-<div class="container" fxLayout="row" fxLayoutGap="10px">
-  <div fxFlex *ngIf="dish">
+<div class="container" fxLayout="row" fxLayoutGap="10px" [@visibility]="visibility">
+  <div fxFlex="40" *ngIf="dish" >
     <mat-card>
       <mat-card-header>
         <mat-card-title>
